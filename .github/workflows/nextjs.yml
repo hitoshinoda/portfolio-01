@@ -61,6 +61,12 @@ jobs:
           #
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
+      - name: Check Environment Variables After Setup Pages
+        run: |
+          echo "Checking environment variables set by actions/configure-pages..."
+          # シングルクォートで囲んで空かどうかわかりやすくする
+          echo "NEXT_PUBLIC_BASE_PATH value is: '$NEXT_PUBLIC_BASE_PATH'"
+          echo "GITHUB_REPOSITORY value is: '$GITHUB_REPOSITORY'" # 参考情報
       - name: Restore cache
         uses: actions/cache@v4
         with:
