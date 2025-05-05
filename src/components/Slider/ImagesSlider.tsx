@@ -20,10 +20,7 @@ interface RoomsSliderProps {
   swiperOptions?: object;
 }
 
-// basePath の取得はここでOK
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-// basePathが取得できているか、モジュールスコープで一度だけログ出力するのも良い
-console.log('[Image Debug] basePath defined at module scope:', basePath);
 
 export default function RoomsSlider({
   images,
@@ -51,46 +48,31 @@ export default function RoomsSlider({
     );
   }
 
-  // ★★★ エラーになる console.log と imagePath の定義はここから削除 ★★★
-  // const imagePath = ...
-  // console.log(...)
-
   return (
     <Swiper {...defaultSwiperOptions}>
-      {images.map((image, index) => { // 'image' はここで定義される
-        // --- ↓↓↓ ログと計算を map の【内側】に移動 ↓↓↓ ---
-        const imagePath = `${basePath}${image.src}`; // 各画像に対するパスを計算
-
-        console.log(`--- Image Index ${index} Debug ---`); // どの画像のログか分かるように index を含める
-        console.log('basePath (inside map):', basePath); // map の中でも basePath を確認
-        console.log('original image.src (inside map):', image.src);
-        console.log('Calculated imagePath (inside map):', imagePath);
-        // --- ↑↑↑ ここまで移動 ---
-
-        return (
-          <SwiperSlide key={`slide-${index}`}>
-            <Image
-              src={imagePath} // 計算した imagePath を使用
-              alt={image.alt}
-              className="mb-4"
-              width={1000}
-              height={600}
-              style={{
-                width: "100%",
-                height: "auto",
-                maxHeight: "830px",
-                objectFit: "cover",
-              }}
-              priority={index === 0}
-            />
-            <div className="w-full md:w-[40%] ml-auto">
-              <div className="[font-size:var(--font-size-xs)]">
-                {image.description}
-              </div>
+      {images.map((image, index) => (
+        <SwiperSlide key={`slide-${index}`}>
+          <Image
+            src={`${basePath}${image.src}`}
+            alt={image.alt}
+            className="mb-4"
+            width={1000}
+            height={600}
+            style={{
+              width: "100%",
+              height: "auto",
+              maxHeight: "830px",
+              objectFit: "cover",
+            }}
+            priority={index === 0}
+          />
+          <div className="w-full md:w-[40%] ml-auto">
+            <div className="[font-size:var(--font-size-xs)]">
+              {image.description}
             </div>
-          </SwiperSlide>
-        );
-      })}
+          </div>
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 }
