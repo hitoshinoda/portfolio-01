@@ -1,0 +1,58 @@
+:root {
+  /* Fluid Font Sizes */
+  --font-size-base: clamp(1rem, 0.91rem + 0.45vw, 1.25rem);
+
+  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.95rem);
+  --font-size-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1.1rem);
+  --font-size-lg: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
+  --font-size-xl: clamp(1.25rem, 1.1rem + 1vw, 2rem);       /* Heading など */
+  --font-size-2xl: clamp(1.5rem, 1.25rem + 1.5vw, 2.5rem);    /* h2 */
+  --font-size-3xl: clamp(1.875rem, 1.5rem + 2.5vw, 3.5rem);   /* h1 */
+  --font-size-4xl: clamp(2.25rem, 1.75rem + 3.5vw, 4.5rem);  /* 大きな見出し */
+  --font-size-5xl: clamp(3rem, 2.25rem + 5vw, 6rem);     /* さらに大きな見出し */
+  --font-size-6xl: clamp(3.75rem, 2.75rem + 7vw, 8rem);
+
+  /* Fluid Spacing */
+  --space-s: clamp(0.5rem, 0.32rem + 0.9vw, 1rem);
+
+  /* 他のスペース例 */
+  --space-xs: clamp(0.25rem, 0.16rem + 0.45vw, 0.5rem); /* 細かい調整用 */
+  --space-m: clamp(1rem, 0.64rem + 1.8vw, 2rem);        /* 基本マージン・パディング */
+  --space-l: clamp(1.5rem, 0.96rem + 2.7vw, 3rem);        /* セクション間など */
+  --space-xl: clamp(2rem, 1.28rem + 3.6vw, 4rem);       /* 大きなスペース */
+  --space-2xl: clamp(3rem, 1.92rem + 5.4vw, 6rem);      /* さらに大きなスペース */
+  --space-3xl: clamp(4rem, 2.56rem + 7.2vw, 8rem);      /* 最大級のスペース */
+
+  /* ステップが固定のスペースも定義しておくと便利です */
+  --space-step-1: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+  --space-step-2: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+  --space-step-3: clamp(2rem, 1.6rem + 2vw, 3rem);
+  --space-step-4: clamp(3rem, 2.4rem + 3vw, 4.5rem);
+  --space-step-5: clamp(4rem, 3.2rem + 4vw, 6rem);
+
+  /* 必要に応じて見出し要素にもデフォルトで適用 */
+  h1 { 
+    font-size: var(--font-size-6xl); 
+    font-family: "Arizonia", cursive;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  h2 { 
+    font-size: var(--font-size-5xl); 
+    font-family: "Arizonia", cursive;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  h3 { 
+    font-size: var(--font-size-4xl); 
+    font-family: "Arizonia", cursive;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  h4 { 
+    font-size: var(--font-size-3xl); 
+    font-family: "Arizonia", cursive;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+}
