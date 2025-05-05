@@ -61,6 +61,36 @@ jobs:
           #
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
+      - name: Check Build Environment Configuration
+        run: |
+          echo "--- Workflow Environment Variables ---"
+          echo "GITHUB_ACTIONS value is: '$GITHUB_ACTIONS'"
+          echo "GITHUB_REPOSITORY_NAME value is: '$GITHUB_REPOSITORY_NAME'"
+
+          echo "--- Simulating next.config.mjs Logic ---"
+          REPO_NAME="${GITHUB_REPOSITORY_NAME:-portfolio-01}" # Config内のフォールバックを模倣
+          IS_PROD_BUILD="false"
+          # GITHUB_ACTIONS が 'true' かどうかをシェルで判定
+          if [ "$GITHUB_ACTIONS" = "true" ]; then
+            IS_PROD_BUILD="true"
+          fi
+          echo "IS_PROD_BUILD (shell check): '$IS_PROD_BUILD'" # isProdBuildがtrueになるはずか？
+
+          # シェルでConfig内の条件分岐を模倣
+          BASE_PATH=""
+          ASSET_PREFIX=""
+          NEXT_PUBLIC_BASE_PATH_VAR=""
+          if [ "$IS_PROD_BUILD" = "true" ]; then
+            BASE_PATH="/$REPO_NAME"
+            ASSET_PREFIX="/$REPO_NAME/"
+            NEXT_PUBLIC_BASE_PATH_VAR="/$REPO_NAME"
+          else
+             # ローカルの場合 (シェルではundefinedは無いので空文字で示す)
+             NEXT_PUBLIC_BASE_PATH_VAR=""
+          fi
+          echo "Calculated BASE_PATH (shell check): '$BASE_PATH'" # /portfolio-01 になるはずか？
+          echo "Calculated ASSET_PREFIX (shell check): '$ASSET_PREFIX'" # /portfolio-01/ になるはずか？
+          echo "Calculated NEXT_PUBLIC_BASE_PATH_VAR (shell check): '$NEXT_PUBLIC_BASE_PATH_VAR'" # /portfolio-01 になるはずか？
       - name: Restore cache
         uses: actions/cache@v4
         with:
