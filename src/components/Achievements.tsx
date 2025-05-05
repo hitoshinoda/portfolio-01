@@ -5,7 +5,7 @@ interface AchievementsProps {
   className?: string;
 }
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "portfolio-01";
 
 const achievementsData = [
   { id: 1, label: "総施工実績", value: 1854, unit: "件 +" , image: `${basePath}/images/top-01.webp` , description: "お客様との信頼関係を重視し、数多くの施工を行ってきました。" },
