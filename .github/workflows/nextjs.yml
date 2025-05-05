@@ -61,6 +61,15 @@ jobs:
           #
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
+      # --- ↓↓↓ 環境変数の設定方法を変更 (outputs を使用) ↓↓↓ ---
+      - name: Set Repository Name Output # ステップ名を変更 & ID を追加
+        id: setvars # ステップIDを追加
+        run: |
+          REPO_NAME=$(echo $GITHUB_REPOSITORY | awk -F / '{print $2}')
+          echo "Extracted REPO_NAME=$REPO_NAME" # 抽出した値をログに出力
+          # $GITHUB_ENV の代わりに $GITHUB_OUTPUT を使う
+          echo "repo_name=$REPO_NAME" >> $GITHUB_OUTPUT
+      # --- ↑↑↑ 環境変数の設定方法を変更 ---
       - name: Check Build Environment Configuration
         run: |
           echo "--- Workflow Environment Variables ---"
@@ -103,8 +112,15 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      # - name: Build with Next.js
+      #   run: ${{ steps.detect-package-manager.outputs.runner }} next build
+      # --- ↓↓↓ ビルドステップに env を追加して変数を明示的に渡す ↓↓↓ ---
       - name: Build with Next.js
+        env: # ビルドプロセスに環境変数を渡す
+          GITHUB_REPOSITORY_NAME: ${{ steps.setvars.outputs.repo_name }}
+          # GITHUB_ACTIONS は自動で利用可能
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
+      # --- ↑↑↑ ビルドステップに env を追加 ---
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
