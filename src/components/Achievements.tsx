@@ -5,10 +5,12 @@ interface AchievementsProps {
   className?: string;
 }
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const achievementsData = [
-  { id: 1, label: "総施工実績", value: 1854, unit: "件 +" , image: "/images/top-01.webp" , description: "お客様との信頼関係を重視し、数多くの施工を行ってきました。" },
-  { id: 2, label: "顧客満足度", value: 97, unit: "%" , image: "/images/top-02.webp" , description: "お客様の声を適切に聞き出すヒアリングを行うことで、高い満足度をいただいております。" },
-  { id: 3, label: "デザインアワード受賞", value: 5, unit: "回" , image: "/images/top-01.webp" , description: "デザインの世界では、数多くの賞を受賞しております。" },
+  { id: 1, label: "総施工実績", value: 1854, unit: "件 +" , image: `${basePath}/images/top-01.webp` , description: "お客様との信頼関係を重視し、数多くの施工を行ってきました。" },
+  { id: 2, label: "顧客満足度", value: 97, unit: "%" , image: `${basePath}/images/top-02.webp` , description: "お客様の声を適切に聞き出すヒアリングを行うことで、高い満足度をいただいております。" },
+  { id: 3, label: "デザインアワード受賞", value: 5, unit: "回" , image: `${basePath}/images/top-01.webp` , description: "デザインの世界では、数多くの賞を受賞しております。" },
 ];
 
 export default function Achievements({ className = "" }: AchievementsProps) {

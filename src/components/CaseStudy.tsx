@@ -5,6 +5,8 @@ interface CaseStudyProps {
   className?: string;
 }
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const caseStudyData = [
   {
     id: 1,
@@ -13,7 +15,7 @@ const caseStudyData = [
     description:
       "現在住んでいるお家、または購入済みの物件を改修によって、新たな価値を生み、お家を生まれ変わらせます。",
     buttonHref: "/",
-    imageSrc: "/images/top-01.webp",
+    imageSrc: `${basePath}/images/top-01.webp`,
     imageAlt: "リノベーション事例 Case Study 01",
   },
   {
@@ -23,7 +25,7 @@ const caseStudyData = [
     description:
       "本当に大切なものだけに絞り込むと見えてくる豊かさがある大好きな暮らしを。",
     buttonHref: "/",
-    imageSrc: "/images/top-02.webp",
+    imageSrc: `${basePath}/images/top-02.webp`,
     imageAlt: "完全規格化住宅事例 Case Study 02",
   },
   {
@@ -33,7 +35,7 @@ const caseStudyData = [
     description:
       "その場所に立つ、すべての人が「大好き」だと思える空間をご提案いたします。",
     buttonHref: "/",
-    imageSrc: "/images/top-01.webp",
+    imageSrc: `${basePath}/images/top-01.webp`,
     imageAlt: "デザイン事例 Case Study 03",
   },
 ];

@@ -1,4 +1,3 @@
-// src/components/RoomsSlider.tsx
 "use client";
 
 import Image from "next/image";
@@ -20,6 +19,8 @@ interface RoomsSliderProps {
   images: RoomImage[];
   swiperOptions?: object;
 }
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export default function RoomsSlider({
   images,
@@ -52,7 +53,7 @@ export default function RoomsSlider({
       {images.map((image, index) => (
         <SwiperSlide key={`slide-${index}`}>
           <Image
-            src={image.src}
+            src={`${basePath}${image.src}`}
             alt={image.alt}
             className="mb-4"
             width={1000}
