@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Zen_Old_Mincho, Arizonia } from "next/font/google";
 import "@/styles/globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const zenOldMincho = Zen_Old_Mincho({
+  weight: ["400"], // 必要なウェイトを指定 (例: 400, 700)
+  subsets: ["latin"], // 必要なサブセットを指定 (通常は 'latin')
+  display: "swap", // フォント読み込み中の挙動
+  variable: "--font-zen-old-mincho", // CSS変数として利用する場合 (任意)
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const arizonia = Arizonia({
+  weight: ["400"], // 必要なウェイトを指定
   subsets: ["latin"],
+  display: "swap",
+  variable: "--font-arizonia", // CSS変数として利用する場合 (任意)
 });
 
 export const metadata: Metadata = {
@@ -25,10 +29,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="ja" className={`${zenOldMincho.variable} ${arizonia.variable}`}>
+      <body>
         <Header />
         {children}
         <Footer />
