@@ -1,7 +1,13 @@
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const bgImageUrl = `${basePath}/images/top-01.webp`;
+
 export default function TopView() {
   return (
     <>
-      <div className="relative w-full h-[300vh] bg-[url('/images/top-01.webp')] bg-fixed bg-cover bg-center">
+      <div
+        className="relative w-full h-[300vh] bg-fixed bg-cover bg-center"
+        style={{ backgroundImage: `url(${bgImageUrl})` }}
+      >
         <div className="absolute top-0 left-0 w-full h-full bg-black/30"></div>
         <div
           className="absolute bottom-0 left-0 right-0 h-[30%]
